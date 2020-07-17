@@ -20,8 +20,17 @@
 scroll_bottom = () => {
   if($('#messages').length > 0){
     $('#messages').scrollTop($('#messages')[0].scrollHeight);
-    e
   }
+}
+
+submit_message = function() {
+  $('#message_body').on('keydown', function(e) {
+    if(e.keyCode == 13){
+      console.log(e);
+      $('button').click();
+      e.target.value = "";
+    }
+  })
 }
 
 $(document).on ('turbolinks:load', ()=>{
@@ -31,5 +40,6 @@ $(document).on ('turbolinks:load', ()=>{
     $(this).closest('.message').transition('fade');
   });
 
+  submit_message();
   scroll_bottom();
 })
